@@ -1,0 +1,13 @@
+version: 1.0
+name: WinterHideAndSeek
+description: Winter hide and seek plugin!
+author: Daki
+main: com.daki.main.WinterHideAndSeek
+api-version: 1.16
+commands:
+  hiders:
+    permission: winterhideandseek.admin
+  seekers:
+    permission: winterhideandseek.admin
+  event:
+    permission: winterhideandseek.admin
