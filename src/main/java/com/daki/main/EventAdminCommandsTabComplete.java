@@ -1,4 +1,4 @@
-package com.daki.main.christmas.global;
+package com.daki.main;
 
 import java.util.ArrayList;
 import java.util.List;

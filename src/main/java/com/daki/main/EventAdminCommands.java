@@ -1,4 +1,4 @@
-package com.daki.main.christmas.global;
+package com.daki.main;
 
 import com.daki.main.Event.EventEndEvent;
 import com.daki.main.Event.EventManager;

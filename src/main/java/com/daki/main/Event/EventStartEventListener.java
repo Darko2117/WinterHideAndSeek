@@ -1,7 +1,7 @@
 package com.daki.main.Event;
 
 import com.daki.main.WinterHideAndSeek;
-import com.daki.main.christmas.global.Sounds;
+import com.daki.main.Sounds;
 import com.daki.main.christmas.seeker.items.SeekerItems;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

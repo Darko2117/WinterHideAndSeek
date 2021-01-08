@@ -1,8 +1,10 @@
 package com.daki.main;
 
+import com.daki.main.Event.EventEndEventListener;
 import com.daki.main.Event.EventManager;
+import com.daki.main.Event.EventReloadEventListener;
+import com.daki.main.Event.EventStartEventListener;
 import com.daki.main.Objects.Event;
-import com.daki.main.christmas.global.*;
 import com.daki.main.christmas.hider.HidersEffects;
 import com.daki.main.christmas.hider.HidersEffectsTabComplete;
 import com.daki.main.christmas.hider.onPlayerDisconnect;
@@ -28,9 +30,9 @@ public class WinterHideAndSeek extends JavaPlugin {
         WinterHideAndSeek.getInstance().getLogger().info("--------------------------------------------------");
 
         Bukkit.getPluginManager().registerEvents(new onSnowballHit(), this);
-        Bukkit.getPluginManager().registerEvents(new onEventStart(), this);
-        Bukkit.getPluginManager().registerEvents(new onEventEnd(), this);
-        Bukkit.getPluginManager().registerEvents(new onEventReload(), this);
+        Bukkit.getPluginManager().registerEvents(new EventStartEventListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EventEndEventListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EventReloadEventListener(), this);
         Bukkit.getPluginManager().registerEvents(new onAbilityUse(), this);
         Bukkit.getPluginManager().registerEvents(new onTryToGetRidOfItem(), this);
         Bukkit.getPluginManager().registerEvents(new onSnowballThrow(), this);

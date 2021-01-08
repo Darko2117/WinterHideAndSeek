@@ -1,6 +1,5 @@
-package com.daki.main.christmas.global;
+package com.daki.main;
 
-import com.daki.main.WinterHideAndSeek;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

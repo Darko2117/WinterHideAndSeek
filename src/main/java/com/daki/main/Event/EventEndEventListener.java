@@ -1,6 +1,6 @@
 package com.daki.main.Event;
 
-import com.daki.main.christmas.global.Sounds;
+import com.daki.main.Sounds;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
