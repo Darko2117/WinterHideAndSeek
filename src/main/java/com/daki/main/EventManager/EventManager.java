@@ -1,10 +1,10 @@
-package com.daki.main.Event;
+package com.daki.main.EventManager;
 
 import com.daki.main.Objects.Event;
 
 public class EventManager {
 
-    public static Event existingEvent = null;
+    public static Event existingEvent;
 
     public static Event getExistingEvent() {
         return existingEvent;

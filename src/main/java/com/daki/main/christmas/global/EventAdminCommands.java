@@ -1,5 +1,6 @@
 package com.daki.main.christmas.global;
 
+import com.daki.main.EventManager.EventManager;
 import com.daki.main.WinterHideAndSeek;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,9 +17,15 @@ public class EventAdminCommands implements CommandExecutor {
 
         if (args.length < 1) return true;
 
-        if (args[0].equals("start")) {
+        switch (args[0]) {
 
-            if (!GV.EventRunning) {
+            case "start":
+
+                if (EventManager.getExistingEvent().getRunning()) {
+                    sender.sendMessage(ChatColor.RED + "Event is already running!");
+                    return true;
+                }
+
                 EventStartEvent event = new EventStartEvent();
                 Bukkit.getPluginManager().callEvent(event);
                 Jingle.sounds();
@@ -37,59 +44,72 @@ public class EventAdminCommands implements CommandExecutor {
                 }
                 Bukkit.broadcast(ChatColor.GREEN + "Event started!", "christmas.admin");
                 GV.EventRunning = true;
-            } else {
-                sender.sendMessage(ChatColor.RED + "The event is already running.");
-            }
-        } else if (args[0].equals("end")) {
-            if (GV.EventRunning) {
-                EventEndEvent event = new EventEndEvent();
-                Bukkit.getPluginManager().callEvent(event);
+
+                break;
+
+            case "end":
+
+                if (GV.EventRunning) {
+                    EventEndEvent event = new EventEndEvent();
+                    Bukkit.getPluginManager().callEvent(event);
+                    Jingle.sounds();
+                    for (Player player : Bukkit.getOnlinePlayers()) {
+                        player.sendTitle(ChatColor.WHITE + "This round is now over!", "", 20, 100, 20);
+                    }
+                    Bukkit.broadcast(ChatColor.RED + "Event shut down!", "christmas.admin");
+                    GV.EventRunning = false;
+                } else {
+                    sender.sendMessage(ChatColor.RED + "The event is not running.");
+                }
+                break;
+            case "reload":
+                if (GV.EventRunning) {
+                    EventReloadEvent event = new EventReloadEvent();
+                    Bukkit.getPluginManager().callEvent(event);
+                    Bukkit.broadcast(ChatColor.GREEN + "Event reloaded!", "christmas.admin");
+                } else {
+                    sender.sendMessage(ChatColor.RED + "The event is not running.");
+                }
+
+                break;
+
+            case "remaining":
+
+                Integer hiders = 0, seekers = 0;
+                sender.sendMessage(ChatColor.GOLD + "Hiders:");
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    if (player.hasPermission("christmas.hider")) {
+                        sender.sendMessage(ChatColor.YELLOW + player.getName());
+                        hiders++;
+                    }
+                }
+                sender.sendMessage(ChatColor.GOLD + "Seekers:");
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    if (player.hasPermission("christmas.seeker")) {
+                        sender.sendMessage(ChatColor.YELLOW + player.getName());
+                        seekers++;
+                    }
+                }
+
+                sender.sendMessage(ChatColor.GOLD + "There is " + hiders + " hiders and " + seekers + " seekers.");
+
+                break;
+
+            case "release":
+
                 Jingle.sounds();
                 for (Player player : Bukkit.getOnlinePlayers()) {
-                    player.sendTitle(ChatColor.WHITE + "This round is now over!", "", 20, 100, 20);
+                    if (player.hasPermission("christmas.seeker")) {
+                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                                "ewarp christmas2019start " + player.getName());
+                    }
                 }
-                Bukkit.broadcast(ChatColor.RED + "Event shut down!", "christmas.admin");
-                GV.EventRunning = false;
-            } else {
-                sender.sendMessage(ChatColor.RED + "The event is not running.");
-            }
-        } else if (args[0].equals("reload")) {
-            if (GV.EventRunning) {
-                EventReloadEvent event = new EventReloadEvent();
-                Bukkit.getPluginManager().callEvent(event);
-                Bukkit.broadcast(ChatColor.GREEN + "Event reloaded!", "christmas.admin");
-            } else {
-                sender.sendMessage(ChatColor.RED + "The event is not running.");
-            }
-        } else if (args[0].equals("remaining")) {
-            Integer hiders = 0, seekers = 0;
-            sender.sendMessage(ChatColor.GOLD + "Hiders:");
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                if (player.hasPermission("christmas.hider")) {
-                    sender.sendMessage(ChatColor.YELLOW + player.getName());
-                    hiders++;
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    player.sendTitle("SEEKERS RELEASED", "GOOD LUCK", 10, 60, 10);
                 }
-            }
-            sender.sendMessage(ChatColor.GOLD + "Seekers:");
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                if (player.hasPermission("christmas.seeker")) {
-                    sender.sendMessage(ChatColor.YELLOW + player.getName());
-                    seekers++;
-                }
-            }
 
-            sender.sendMessage(ChatColor.GOLD + "There is " + hiders + " hiders and " + seekers + " seekers.");
-        } else if (args[0].equals("release")) {
-            Jingle.sounds();
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                if (player.hasPermission("christmas.seeker")) {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                            "ewarp christmas2019start " + player.getName());
-                }
-            }
-            for (Player player : Bukkit.getOnlinePlayers()) {
-                player.sendTitle("SEEKERS RELEASED", "GOOD LUCK", 10, 60, 10);
-            }
+                break;
+
         }
 
         return false;

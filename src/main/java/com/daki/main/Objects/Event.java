@@ -5,23 +5,23 @@ import java.util.List;
 
 public class Event {
 
-    Boolean isRunning;
+    Boolean running;
     List<Participant> participants;
 
-    Event() {
+    public Event() {
 
-        isRunning = false;
+        running = false;
         participants = new ArrayList<>();
 
 
     }
 
     public Boolean getRunning() {
-        return isRunning;
+        return running;
     }
 
     public void setRunning(Boolean running) {
-        isRunning = running;
+        this.running = running;
     }
 
     public List<Participant> getParticipants() {

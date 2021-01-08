@@ -1,5 +1,7 @@
 package com.daki.main;
 
+import com.daki.main.EventManager.EventManager;
+import com.daki.main.Objects.Event;
 import com.daki.main.christmas.global.*;
 import com.daki.main.christmas.hider.HidersEffects;
 import com.daki.main.christmas.hider.HidersEffectsTabComplete;
@@ -21,6 +23,7 @@ public class WinterHideAndSeek extends JavaPlugin {
     public void onEnable() {
 
         instance = this;
+        EventManager.setExistingEvent(new Event());
 
         WinterHideAndSeek.getInstance().getLogger().info("--------------------------------------------------");
 
