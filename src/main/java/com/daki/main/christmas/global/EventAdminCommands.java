@@ -147,6 +147,14 @@ public class EventAdminCommands implements CommandExecutor {
                     }
                 }
 
+                message = message.concat("\nNot participating (" + notParticipating.size() + "): ");
+                for (Integer i = 0; i < notParticipating.size(); i++) {
+                    message = message.concat(notParticipating.get(i));
+                    if (i != notParticipating.size() - 1) {
+                        message = message.concat(", ");
+                    }
+                }
+
                 sender.sendMessage(message);
 
                 break;
