@@ -4,12 +4,17 @@ import com.daki.main.Event.EventEndEvent;
 import com.daki.main.Event.EventManager;
 import com.daki.main.Event.EventReloadEvent;
 import com.daki.main.Event.EventStartEvent;
+import com.daki.main.Objects.Enums.EventRole;
+import com.daki.main.Objects.Participant;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventAdminCommands implements CommandExecutor {
 
@@ -53,25 +58,96 @@ public class EventAdminCommands implements CommandExecutor {
 
                 break;
 
+            case "hiders":
+
+                if (args.length < 3) return true;
+
+                if (args[1].equals("add")) {
+
+                    Player player = Bukkit.getPlayer(args[2]);
+
+                    Participant participant = new Participant(player, EventRole.Hider);
+
+                    EventManager.getExistingEvent().addParticipant(participant);
+
+                } else if (args[1].equals("remove")) {
+
+                    Player player = Bukkit.getPlayer(args[2]);
+
+                    Participant participant = new Participant(player, EventRole.Hider);
+
+                    EventManager.getExistingEvent().removeParticipant(participant);
+
+                }
+
+                break;
+
+            case "seekers":
+
+                if (args.length < 3) return true;
+
+                if (args[1].equals("add")) {
+
+                    Player player = Bukkit.getPlayer(args[2]);
+
+                    Participant participant = new Participant(player, EventRole.Seeker);
+
+                    EventManager.getExistingEvent().addParticipant(participant);
+
+                } else if (args[1].equals("remove")) {
+
+                    Player player = Bukkit.getPlayer(args[2]);
+
+                    Participant participant = new Participant(player, EventRole.Seeker);
+
+                    EventManager.getExistingEvent().removeParticipant(participant);
+
+                }
+
+                break;
+
             case "remaining":
 
-                Integer hiders = 0, seekers = 0;
-                sender.sendMessage(ChatColor.GOLD + "Hiders:");
+                List<String> hiders = new ArrayList<>();
+                List<String> seekers = new ArrayList<>();
+                List<String> notParticipating = new ArrayList<>();
+
                 for (Player player : Bukkit.getOnlinePlayers()) {
-                    if (player.hasPermission("christmas.hider")) {
-                        sender.sendMessage(ChatColor.YELLOW + player.getName());
-                        hiders++;
+
+                    Participant participant = EventManager.existingEvent.getParticipantFromPlayerName(player.getName());
+
+                    if (participant == null) {
+                        notParticipating.add(player.getName());
+                        return true;
+
                     }
+                    if (participant.getEventRole().equals(EventRole.Hider)) {
+                        hiders.add(participant.getPlayer().getName());
+                    } else if (participant.getEventRole().equals(EventRole.Seeker)) {
+                        seekers.add(participant.getPlayer().getName());
+                    }
+
                 }
-                sender.sendMessage(ChatColor.GOLD + "Seekers:");
-                for (Player player : Bukkit.getOnlinePlayers()) {
-                    if (player.hasPermission("christmas.seeker")) {
-                        sender.sendMessage(ChatColor.YELLOW + player.getName());
-                        seekers++;
+
+                String message = "";
+
+                message = message.concat("Hiders (" + hiders.size() + "): ");
+                for (Integer i = 0; i < hiders.size(); i++) {
+                    message = message.concat(hiders.get(i));
+                    if (i != hiders.size() - 1) {
+                        message = message.concat(", ");
                     }
                 }
 
-                sender.sendMessage(ChatColor.GOLD + "There is " + hiders + " hiders and " + seekers + " seekers.");
+                message = message.concat("\nSeekers (" + seekers.size() + "): ");
+                for (Integer i = 0; i < seekers.size(); i++) {
+                    message = message.concat(seekers.get(i));
+                    if (i != seekers.size() - 1) {
+                        message = message.concat(", ");
+                    }
+                }
+
+                sender.sendMessage(message);
 
                 break;
 
@@ -81,7 +157,7 @@ public class EventAdminCommands implements CommandExecutor {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     if (player.hasPermission("christmas.seeker")) {
                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                                "ewarp christmas2020start " + player.getName());
+                                "cmi warp SeekersStartWarp " + player.getName() + " -s");
                     }
                 }
                 for (Player player : Bukkit.getOnlinePlayers()) {

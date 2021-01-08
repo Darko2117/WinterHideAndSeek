@@ -8,7 +8,7 @@ public class Participant {
     Player player;
     EventRole eventRole;
 
-    Participant(Player player, EventRole eventRole) {
+    public Participant(Player player, EventRole eventRole) {
 
         this.player = player;
         this.eventRole = eventRole;
