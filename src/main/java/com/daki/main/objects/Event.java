@@ -1,4 +1,4 @@
-package com.daki.main.Objects;
+package com.daki.main.objects;
 
 import java.util.ArrayList;
 import java.util.List;

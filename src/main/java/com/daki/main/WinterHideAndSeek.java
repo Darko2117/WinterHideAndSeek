@@ -1,15 +1,17 @@
 package com.daki.main;
 
-import com.daki.main.Event.EventEndEventListener;
-import com.daki.main.Event.EventManager;
-import com.daki.main.Event.EventReloadEventListener;
-import com.daki.main.Event.EventStartEventListener;
-import com.daki.main.Objects.Event;
+import com.daki.main.event.listeners.EventEndEventListener;
+import com.daki.main.event.manager.EventManager;
+import com.daki.main.event.listeners.EventReloadEventListener;
+import com.daki.main.event.listeners.EventStartEventListener;
+import com.daki.main.objects.Event;
 import com.daki.main.christmas.hider.HidersEffects;
 import com.daki.main.christmas.hider.HidersEffectsTabComplete;
 import com.daki.main.christmas.hider.onPlayerDisconnect;
 import com.daki.main.christmas.seeker.*;
 import com.daki.main.christmas.seeker.items.onTryToGetRidOfItem;
+import com.daki.main.commands.EventAdminCommands;
+import com.daki.main.commands.EventAdminCommandsTabComplete;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

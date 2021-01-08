@@ -1,4 +1,4 @@
-package com.daki.main.Event;
+package com.daki.main.event.events;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;

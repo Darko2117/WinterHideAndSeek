@@ -1,11 +1,12 @@
-package com.daki.main;
+package com.daki.main.commands;
 
-import com.daki.main.Event.EventEndEvent;
-import com.daki.main.Event.EventManager;
-import com.daki.main.Event.EventReloadEvent;
-import com.daki.main.Event.EventStartEvent;
-import com.daki.main.Objects.Enums.EventRole;
-import com.daki.main.Objects.Participant;
+import com.daki.main.event.events.EventEndEvent;
+import com.daki.main.event.manager.EventManager;
+import com.daki.main.event.events.EventReloadEvent;
+import com.daki.main.event.events.EventStartEvent;
+import com.daki.main.objects.Enums.EventRole;
+import com.daki.main.objects.Participant;
+import com.daki.main.Sounds;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

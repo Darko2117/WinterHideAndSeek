@@ -1,6 +1,7 @@
-package com.daki.main.Event;
+package com.daki.main.event.listeners;
 
 import com.daki.main.christmas.seeker.items.SeekerItems;
+import com.daki.main.event.events.EventReloadEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

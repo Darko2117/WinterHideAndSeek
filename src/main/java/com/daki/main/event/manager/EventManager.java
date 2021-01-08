@@ -1,6 +1,6 @@
-package com.daki.main.Event;
+package com.daki.main.event.manager;
 
-import com.daki.main.Objects.Event;
+import com.daki.main.objects.Event;
 
 public class EventManager {
 

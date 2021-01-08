@@ -1,6 +1,6 @@
-package com.daki.main.Objects;
+package com.daki.main.objects;
 
-import com.daki.main.Objects.Enums.EventRole;
+import com.daki.main.objects.Enums.EventRole;
 import org.bukkit.entity.Player;
 
 public class Participant {
