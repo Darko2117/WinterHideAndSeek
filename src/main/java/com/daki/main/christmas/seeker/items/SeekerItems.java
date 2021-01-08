@@ -45,7 +45,7 @@ public class SeekerItems {
 
     }
 
-    public static ItemStack Snowball() {
+    public static ItemStack Snowballs() {
 
         ItemStack snowball = new ItemStack(Material.SNOWBALL);
         ItemMeta meta = snowball.getItemMeta();
@@ -54,6 +54,7 @@ public class SeekerItems {
         lore.add(ChatColor.BLUE + "Aim for their head!");
         meta.setLore(lore);
         meta.setDisplayName(ChatColor.AQUA + "Snowball");
+        snowball.setAmount(16);
         snowball.setItemMeta(meta);
 
         return snowball;

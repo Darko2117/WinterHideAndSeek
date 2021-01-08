@@ -1,5 +1,6 @@
 package com.daki.main.christmas.global;
 
+import com.daki.main.Event.EventEndEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

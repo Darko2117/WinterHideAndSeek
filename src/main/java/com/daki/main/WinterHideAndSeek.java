@@ -1,6 +1,6 @@
 package com.daki.main;
 
-import com.daki.main.EventManager.EventManager;
+import com.daki.main.Event.EventManager;
 import com.daki.main.Objects.Event;
 import com.daki.main.christmas.global.*;
 import com.daki.main.christmas.hider.HidersEffects;

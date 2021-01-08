@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.daki.main.WinterHideAndSeek;
-import com.daki.main.christmas.global.Jingle;
+import com.daki.main.christmas.global.Sounds;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -35,16 +35,16 @@ public class HidersEffects implements CommandExecutor {
                         glowOff();
                     } else
                         glow(Integer.parseInt(args[1]), Integer.parseInt(args[2]));
-                    Jingle.sounds();
+                    Sounds.playSounds();
                 } else if (args[0].equals("chicken")) {
                     chicken(Integer.parseInt(args[1]));
-                    Jingle.sounds();
+                    Sounds.playSounds();
                 } else if (args[0].equals("fireworks")) {
                     fireworks(Integer.parseInt(args[1]));
-                    Jingle.sounds();
+                    Sounds.playSounds();
                 } else if (args[0].equals("freeze")) {
                     freeze(Integer.parseInt(args[1]));
-                    Jingle.sounds();
+                    Sounds.playSounds();
                 }
             }
 

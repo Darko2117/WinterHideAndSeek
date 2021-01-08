@@ -1,4 +1,4 @@
-package com.daki.main.EventManager;
+package com.daki.main.Event;
 
 import com.daki.main.Objects.Event;
 

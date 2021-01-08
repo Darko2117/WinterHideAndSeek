@@ -1,4 +1,4 @@
-package com.daki.main.christmas.global;
+package com.daki.main.Event;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;

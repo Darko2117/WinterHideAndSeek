@@ -15,7 +15,7 @@ public class onSnowballThrow implements Listener {
         if (e.getEntity() instanceof Snowball) {
             if (player.hasPermission("christmas.seeker")) {
                 if (player.getInventory().getItemInMainHand().getAmount() < 16) {
-                    player.getInventory().addItem(SeekerItems.Snowball());
+                    player.getInventory().addItem(SeekerItems.Snowballs());
                 }
             }
         }
