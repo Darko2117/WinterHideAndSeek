@@ -43,9 +43,6 @@ public class WinterHideAndSeek extends JavaPlugin {
         getCommand("hiders").setExecutor(new HidersEffects());
         getCommand("hiders").setTabCompleter(new HidersEffectsTabComplete());
 
-        getCommand("seekers").setExecutor(new Seeker());
-        getCommand("seekers").setTabCompleter(new SeekersTabComplete());
-
         getCommand("event").setExecutor(new EventAdminCommands());
         getCommand("event").setTabCompleter(new EventAdminCommandsTabComplete());
 

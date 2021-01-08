@@ -8,6 +8,7 @@ import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class onSnowballThrow implements Listener {
 
@@ -17,7 +18,9 @@ public class onSnowballThrow implements Listener {
         if (e.getEntity() instanceof Snowball) {
             if (EventManager.getExistingEvent().getParticipantFromPlayerName(player.getName()).getEventRole().equals(EventRole.Seeker)) {
                 if (player.getInventory().getItemInMainHand().getAmount() < 16) {
-                    player.getInventory().addItem(SeekerItems.Snowballs());
+                    ItemStack snowball = SeekerItems.Snowballs();
+                    snowball.setAmount(1);
+                    player.getInventory().addItem(snowball);
                 }
             }
         }

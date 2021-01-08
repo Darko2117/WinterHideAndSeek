@@ -7,7 +7,5 @@ api-version: 1.16
 commands:
   hiders:
     permission: winterhideandseek.admin
-  seekers:
-    permission: winterhideandseek.admin
   event:
     permission: winterhideandseek.admin

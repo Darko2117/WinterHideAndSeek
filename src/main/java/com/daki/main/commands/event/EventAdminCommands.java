@@ -107,7 +107,7 @@ public class EventAdminCommands implements CommandExecutor {
 
                 if (participant == null) {
                     notParticipating.add(player.getName());
-                    return true;
+                    continue;
 
                 }
                 if (participant.getEventRole().equals(EventRole.Hider)) {
