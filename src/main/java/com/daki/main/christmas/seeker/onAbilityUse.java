@@ -2,6 +2,10 @@ package com.daki.main.christmas.seeker;
 
 import com.daki.main.WinterHideAndSeek;
 import com.daki.main.christmas.seeker.items.SeekerItems;
+import com.daki.main.event.manager.EventManager;
+import com.daki.main.objects.Enums.EventRole;
+import com.daki.main.objects.Event;
+import com.daki.main.objects.Participant;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,7 +24,7 @@ public class onAbilityUse implements Listener {
         Player player = (Player) e.getPlayer();
         if (player.getInventory().getItemInMainHand().equals(SeekerItems.Speed())) {
             if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                if (player.hasPermission("christmas.seeker")) {
+                if (EventManager.getExistingEvent().getParticipantFromPlayerName(player.getName()).getEventRole().equals(EventRole.Seeker)) {
                     player.getInventory().remove(SeekerItems.Speed());
                     player.getInventory().addItem(SeekerItems.SpeedCooldown());
                     PotionEffect speed = new PotionEffect(PotionEffectType.SPEED, 200, 1);

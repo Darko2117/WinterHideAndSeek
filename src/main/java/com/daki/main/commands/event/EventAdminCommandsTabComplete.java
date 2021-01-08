@@ -1,4 +1,4 @@
-package com.daki.main.commands;
+package com.daki.main.commands.event;
 
 import java.util.ArrayList;
 import java.util.List;

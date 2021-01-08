@@ -1,4 +1,4 @@
-package com.daki.main.commands;
+package com.daki.main.commands.event;
 
 import com.daki.main.event.events.EventEndEvent;
 import com.daki.main.event.manager.EventManager;
@@ -159,6 +159,7 @@ public class EventAdminCommands implements CommandExecutor {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 player.sendTitle("SEEKERS RELEASED", "GOOD LUCK", 10, 60, 10);
             }
+
         }
 
         return false;

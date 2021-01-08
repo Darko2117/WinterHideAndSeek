@@ -5,6 +5,8 @@ import com.daki.main.Sounds;
 import com.daki.main.christmas.seeker.items.SeekerItems;
 import com.daki.main.event.events.EventStartEvent;
 import com.daki.main.event.manager.EventManager;
+import com.daki.main.objects.Enums.EventRole;
+import com.daki.main.objects.Participant;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -18,12 +20,12 @@ public class EventStartEventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEventStart(EventStartEvent event) {
 
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (player.hasPermission("winterhideandseek.seeker")) {
+        for (Participant participant : EventManager.getExistingEvent().getParticipants()) {
+            if (participant.getEventRole().equals(EventRole.Seeker)) {
 
-                player.getInventory().clear();
-                player.getInventory().addItem(SeekerItems.Snowballs());
-                player.getInventory().addItem(SeekerItems.Speed());
+                participant.getPlayer().getInventory().clear();
+                participant.getPlayer().getInventory().addItem(SeekerItems.Snowballs());
+                participant.getPlayer().getInventory().addItem(SeekerItems.Speed());
 
             }
         }

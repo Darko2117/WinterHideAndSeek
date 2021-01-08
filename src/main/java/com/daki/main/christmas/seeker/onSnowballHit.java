@@ -1,6 +1,8 @@
 package com.daki.main.christmas.seeker;
 
 import com.daki.main.WinterHideAndSeek;
+import com.daki.main.event.manager.EventManager;
+import com.daki.main.objects.Enums.EventRole;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
@@ -17,7 +19,7 @@ public class onSnowballHit implements Listener {
         if (e.getEntity().getType().equals(EntityType.SNOWBALL)) {
             if (e.getHitEntity() instanceof Player) {
                 Player reciever = (Player) e.getHitEntity();
-                if (reciever.hasPermission("christmas.hider")) {
+                if (EventManager.getExistingEvent().getParticipantFromPlayerName(reciever.getName()).getEventRole().equals(EventRole.Hider)) {
                     reciever.setHealth(0);
                     Player sender = (Player) e.getEntity().getShooter();
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
@@ -26,7 +28,7 @@ public class onSnowballHit implements Listener {
 
                         Integer hiders = 0;
                         for (Player player : Bukkit.getOnlinePlayers()) {
-                            if (player.hasPermission("christmas.hider")) {
+                            if (EventManager.getExistingEvent().getParticipantFromPlayerName(player.getName()).getEventRole().equals(EventRole.Hider)) {
                                 hiders++;
                             }
                         }

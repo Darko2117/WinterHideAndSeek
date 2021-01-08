@@ -3,6 +3,8 @@ package com.daki.main.event.listeners;
 import com.daki.main.Sounds;
 import com.daki.main.event.events.EventEndEvent;
 import com.daki.main.event.manager.EventManager;
+import com.daki.main.objects.Enums.EventRole;
+import com.daki.main.objects.Participant;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -15,9 +17,9 @@ public class EventEndEventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEventEnd(EventEndEvent event) {
 
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (player.hasPermission("winterhideandseek.seeker")) {
-                player.getInventory().clear();
+        for (Participant participant : EventManager.getExistingEvent().getParticipants()) {
+            if (participant.getEventRole().equals(EventRole.Seeker)) {
+                participant.getPlayer().getInventory().clear();
             }
         }
 
@@ -31,6 +33,7 @@ public class EventEndEventListener implements Listener {
 
         Bukkit.broadcast(ChatColor.RED + "Event shut down!", "winterhideandseek.admin");
 
+        EventManager.getExistingEvent().clearParticipants();
         EventManager.getExistingEvent().setRunning(false);
 
     }

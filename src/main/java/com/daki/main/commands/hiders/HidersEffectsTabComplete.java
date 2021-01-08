@@ -1,4 +1,4 @@
-package com.daki.main.christmas.hider;
+package com.daki.main.commands.hiders;
 
 import java.util.ArrayList;
 import java.util.List;

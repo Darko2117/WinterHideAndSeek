@@ -2,9 +2,11 @@ package com.daki.main.event.listeners;
 
 import com.daki.main.christmas.seeker.items.SeekerItems;
 import com.daki.main.event.events.EventReloadEvent;
+import com.daki.main.event.manager.EventManager;
+import com.daki.main.objects.Enums.EventRole;
+import com.daki.main.objects.Participant;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -14,12 +16,12 @@ public class EventReloadEventListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEventReload(EventReloadEvent event) {
 
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (player.hasPermission("winterhideandseek.seeker")) {
+        for (Participant participant : EventManager.getExistingEvent().getParticipants()) {
+            if (participant.getEventRole().equals(EventRole.Seeker)) {
 
-                player.getInventory().clear();
-                player.getInventory().addItem(SeekerItems.Snowballs());
-                player.getInventory().addItem(SeekerItems.Speed());
+                participant.getPlayer().getInventory().clear();
+                participant.getPlayer().getInventory().addItem(SeekerItems.Snowballs());
+                participant.getPlayer().getInventory().addItem(SeekerItems.Speed());
 
             }
         }

@@ -12,7 +12,7 @@ public class onTryToGetRidOfItem implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInventoryClick(InventoryClickEvent event) {
-        if (!event.getWhoClicked().hasPermission("christmas.admin")
+        if (!event.getWhoClicked().hasPermission("winterhideandseek.admin")
                 && (event.getCurrentItem().getType().equals(Material.SUGAR)
                         || event.getCurrentItem().getType().equals(Material.SNOWBALL))) {
             event.setCancelled(true);
@@ -22,7 +22,7 @@ public class onTryToGetRidOfItem implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void OnPlayerDropItem(PlayerDropItemEvent event) {
-        if (!event.getPlayer().hasPermission("christmas.admin")
+        if (!event.getPlayer().hasPermission("winterhideandseek.admin")
                 && (event.getItemDrop().getItemStack().getType().equals(Material.SUGAR)
                         || event.getItemDrop().getItemStack().getType().equals(Material.SNOWBALL))) {
             event.setCancelled(true);
@@ -31,7 +31,7 @@ public class onTryToGetRidOfItem implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void OnPlayerSwapHandItem(PlayerSwapHandItemsEvent event) {
-        if (!event.getPlayer().hasPermission("christmas.admin") && event.getOffHandItem() != null) {
+        if (!event.getPlayer().hasPermission("winterhideandseek.admin") && event.getOffHandItem() != null) {
             if (event.getOffHandItem().getType().equals(Material.SUGAR)
                     || event.getOffHandItem().getType().equals(Material.SNOWBALL)) {
                 event.setCancelled(true);

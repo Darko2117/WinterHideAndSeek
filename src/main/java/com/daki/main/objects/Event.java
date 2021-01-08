@@ -40,13 +40,17 @@ public class Event {
         this.participants.remove(participant);
     }
 
-    public Participant getParticipantFromPlayerName(String playerName){
-        for(Participant participant : participants){
-            if(participant.getPlayer().getName().equals(playerName)){
+    public Participant getParticipantFromPlayerName(String playerName) {
+        for (Participant participant : participants) {
+            if (participant.getPlayer().getName().equals(playerName)) {
                 return participant;
             }
         }
         return null;
+    }
+
+    public void clearParticipants() {
+        participants.clear();
     }
 
 }
