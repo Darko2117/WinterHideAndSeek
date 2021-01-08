@@ -17,9 +17,9 @@ public class SeekerItems {
         ItemStack speed = new ItemStack(Material.SUGAR);
         ItemMeta meta = speed.getItemMeta();
 
-        List<String> lore = new ArrayList<String>();
-        lore.add(ChatColor.BLUE + "Actiavate speed 2 for 10 seconds! 60 sec cooldown.");
-        lore.add(ChatColor.BLUE + "HE SPEEEEEDIN!");
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.BLUE + "Activate speed 2 for 10 seconds! 60 sec cooldown.");
+        lore.add(ChatColor.BLUE + "THEY SPEEEEEDIN!");
         meta.setLore(lore);
         meta.setDisplayName(ChatColor.GREEN + "Sugar Rush!");
         speed.setItemMeta(meta);
@@ -33,7 +33,7 @@ public class SeekerItems {
         ItemStack speed = new ItemStack(Material.SUGAR);
         ItemMeta meta = speed.getItemMeta();
 
-        List<String> lore = new ArrayList<String>();
+        List<String> lore = new ArrayList<>();
         lore.add(ChatColor.RED + "On Cooldown");
         meta.setLore(lore);
         meta.setDisplayName(ChatColor.RED + "Sugar Rush!");
@@ -46,16 +46,18 @@ public class SeekerItems {
     }
 
     public static ItemStack Snowball() {
+
         ItemStack snowball = new ItemStack(Material.SNOWBALL);
         ItemMeta meta = snowball.getItemMeta();
 
-        List<String> lore = new ArrayList<String>();
+        List<String> lore = new ArrayList<>();
         lore.add(ChatColor.BLUE + "Aim for their head!");
         meta.setLore(lore);
         meta.setDisplayName(ChatColor.AQUA + "Snowball");
         snowball.setItemMeta(meta);
 
         return snowball;
+
     }
 
 }

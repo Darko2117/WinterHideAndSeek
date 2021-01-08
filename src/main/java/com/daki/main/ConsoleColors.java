@@ -1,4 +1,4 @@
-package com.daki.main.global;
+package com.daki.main;
 
 public class ConsoleColors {
     // Reset
