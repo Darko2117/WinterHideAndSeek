@@ -1,6 +1,7 @@
 package com.daki.main;
 
 import com.daki.main.christmas.onParticipantLeave;
+import com.daki.main.christmas.onPlayerConnect;
 import com.daki.main.event.listeners.EventEndEventListener;
 import com.daki.main.event.manager.EventManager;
 import com.daki.main.event.listeners.EventReloadEventListener;
@@ -13,6 +14,7 @@ import com.daki.main.christmas.seeker.items.onTryToGetRidOfItem;
 import com.daki.main.commands.event.EventAdminCommands;
 import com.daki.main.commands.event.EventAdminCommandsTabComplete;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class WinterHideAndSeek extends JavaPlugin {
@@ -30,15 +32,16 @@ public class WinterHideAndSeek extends JavaPlugin {
         EventManager.setExistingEvent(new Event());
 
         WinterHideAndSeek.getInstance().getLogger().info("--------------------------------------------------");
-
-        Bukkit.getPluginManager().registerEvents(new onSnowballHit(), this);
-        Bukkit.getPluginManager().registerEvents(new EventStartEventListener(), this);
-        Bukkit.getPluginManager().registerEvents(new EventEndEventListener(), this);
-        Bukkit.getPluginManager().registerEvents(new EventReloadEventListener(), this);
-        Bukkit.getPluginManager().registerEvents(new onAbilityUse(), this);
-        Bukkit.getPluginManager().registerEvents(new onTryToGetRidOfItem(), this);
-        Bukkit.getPluginManager().registerEvents(new onSnowballThrow(), this);
-        Bukkit.getPluginManager().registerEvents(new onParticipantLeave(), this);
+        PluginManager pluginManager = Bukkit.getPluginManager();
+        pluginManager.registerEvents(new onSnowballHit(), this);
+        pluginManager.registerEvents(new EventStartEventListener(), this);
+        pluginManager.registerEvents(new EventEndEventListener(), this);
+        pluginManager.registerEvents(new EventReloadEventListener(), this);
+        pluginManager.registerEvents(new onAbilityUse(), this);
+        pluginManager.registerEvents(new onTryToGetRidOfItem(), this);
+        pluginManager.registerEvents(new onSnowballThrow(), this);
+        pluginManager.registerEvents(new onParticipantLeave(), this);
+        pluginManager.registerEvents(new onPlayerConnect(), this);
 
         getCommand("hiders").setExecutor(new HidersEffects());
         getCommand("hiders").setTabCompleter(new HidersEffectsTabComplete());

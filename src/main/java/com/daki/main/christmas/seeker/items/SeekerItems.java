@@ -61,4 +61,17 @@ public class SeekerItems {
 
     }
 
+    public static ItemStack Banner() {
+        ItemStack banner = new ItemStack(Material.RED_BANNER);
+        ItemMeta meta = banner.getItemMeta();
+
+        List<String> lore = new ArrayList<>();
+        lore.add(ChatColor.BLUE + "Marks you as the seeker");
+        meta.setLore(lore);
+        meta.setDisplayName(ChatColor.AQUA + "Seeker Banner!");
+        banner.setAmount(1);
+        banner.setItemMeta(meta);
+
+        return banner;
+    }
 }

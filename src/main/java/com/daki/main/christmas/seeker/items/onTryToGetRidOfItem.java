@@ -12,6 +12,7 @@ public class onTryToGetRidOfItem implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInventoryClick(InventoryClickEvent event) {
+        if (event.getCurrentItem() == null){return;}
         if (!event.getWhoClicked().hasPermission("winterhideandseek.admin")
                 && (event.getCurrentItem().getType().equals(Material.SUGAR)
                         || event.getCurrentItem().getType().equals(Material.SNOWBALL))) {
