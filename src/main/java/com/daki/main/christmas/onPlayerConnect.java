@@ -21,10 +21,9 @@ public class onPlayerConnect implements Listener{
         if (player.hasPermission("winterhideandseek.bypass")){
             return;
         }
-
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
+                "lp user " + player.getName() + " permission settemp cmi.kit.christmas true 7d"); //Give them the participation reward
         if (!event.getRunning()){
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                    "lp user " + player.getName() + " permission settemp cmi.kit.christmas true 7d");
             event.addParticipant(new Participant(player, EventRole.Hider));
             player.sendTitle(ChatColor.DARK_GREEN + "JOINED EVENT",
                     ChatColor.GREEN + "You are a hider, the game will start soon!",

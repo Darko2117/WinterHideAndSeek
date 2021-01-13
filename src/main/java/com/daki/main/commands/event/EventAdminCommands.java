@@ -37,14 +37,14 @@ public class EventAdminCommands implements CommandExecutor {
 
             int duration;
             if (args.length != 2){
-                sender.sendMessage(ChatColor.RED + "Please specify an event duration in minutes!");
+                sender.sendMessage(ChatColor.RED + "Please specify an event duration in seconds!");
                 return true;
             } else {
                 try {
                     duration = Integer.parseInt(args[1]);
                 } catch (Exception e) {
                     //lazy but im in a hurry
-                    sender.sendMessage(ChatColor.RED + "Please specify an event duration in minutes (numbers only)!");
+                    sender.sendMessage(ChatColor.RED + "Please specify an event duration in seconds (numbers only)!");
                     return true;
                 }
 
