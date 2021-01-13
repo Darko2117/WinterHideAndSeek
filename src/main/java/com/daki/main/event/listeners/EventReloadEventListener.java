@@ -22,6 +22,8 @@ public class EventReloadEventListener implements Listener {
                 participant.getPlayer().getInventory().clear();
                 participant.getPlayer().getInventory().addItem(SeekerItems.Snowballs());
                 participant.getPlayer().getInventory().addItem(SeekerItems.Speed());
+                participant.getPlayer().getInventory().setHelmet(SeekerItems.Bed());
+                participant.getPlayer().updateInventory();
 
             }
         }

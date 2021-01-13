@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 public class EventAdminCommandsTabComplete implements TabCompleter {
-    private static final String[] COMMANDS = { "start", "end", "reload", "hiders", "seekers", "remaining", "release" };
+    private static final String[] COMMANDS = { "start", "end", "reload", "hiders", "seekers", "remaining", "release", "addstartpoint", "deleteallstartpoints", "remainingtime" };
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {

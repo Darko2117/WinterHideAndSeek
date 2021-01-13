@@ -3,6 +3,8 @@ package com.daki.main.christmas.seeker;
 import com.daki.main.WinterHideAndSeek;
 import com.daki.main.event.manager.EventManager;
 import com.daki.main.objects.Enums.EventRole;
+import com.daki.main.objects.Event;
+import com.daki.main.objects.Participant;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
@@ -16,10 +18,14 @@ public class onSnowballHit implements Listener {
 
     @EventHandler
     public void onSnowballHitHider(ProjectileHitEvent e) {
+        if (!EventManager.getExistingEvent().getRunning()){
+            return;
+        }
         if (e.getEntity().getType().equals(EntityType.SNOWBALL)) {
             if (e.getHitEntity() instanceof Player) {
                 Player reciever = (Player) e.getHitEntity();
-                if (EventManager.getExistingEvent().getParticipantFromPlayerName(reciever.getName()).getEventRole().equals(EventRole.Hider)) {
+                Participant participantFromName = EventManager.getExistingEvent().getParticipantFromPlayerName(reciever.getName());
+                if (participantFromName!=null && participantFromName.getEventRole().equals(EventRole.Hider)) {
                     reciever.setHealth(0);
                     Player sender = (Player) e.getEntity().getShooter();
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
@@ -27,12 +33,14 @@ public class onSnowballHit implements Listener {
                     if (!GV.SnowballChatCooldown.containsKey(reciever)) {
 
                         Integer hiders = 0;
-                        for (Player player : Bukkit.getOnlinePlayers()) {
-                            if (EventManager.getExistingEvent().getParticipantFromPlayerName(player.getName()).getEventRole().equals(EventRole.Hider)) {
+                        Event existingEvent = EventManager.getExistingEvent();
+                        existingEvent.removeParticipant(existingEvent.getParticipantFromPlayerName(reciever.getName()));
+
+                        for (Participant participant : existingEvent.getParticipants()){
+                            if (participant.getEventRole().equals(EventRole.Hider)){
                                 hiders++;
                             }
                         }
-                        hiders -= 1;
                         if (hiders == 1) {
                             Bukkit.getServer().broadcastMessage(ChatColor.RED + sender.getName() + " has found "
                                     + reciever.getName() + ". " + hiders + " hider remaining.");

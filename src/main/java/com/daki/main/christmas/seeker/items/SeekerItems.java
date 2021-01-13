@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BannerMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class SeekerItems {
@@ -32,8 +34,8 @@ public class SeekerItems {
 
         ItemStack speed = new ItemStack(Material.SUGAR);
         ItemMeta meta = speed.getItemMeta();
-
         List<String> lore = new ArrayList<>();
+
         lore.add(ChatColor.RED + "On Cooldown");
         meta.setLore(lore);
         meta.setDisplayName(ChatColor.RED + "Sugar Rush!");
@@ -49,8 +51,8 @@ public class SeekerItems {
 
         ItemStack snowball = new ItemStack(Material.SNOWBALL);
         ItemMeta meta = snowball.getItemMeta();
-
         List<String> lore = new ArrayList<>();
+
         lore.add(ChatColor.BLUE + "Aim for their head!");
         meta.setLore(lore);
         meta.setDisplayName(ChatColor.AQUA + "Snowball");
@@ -61,4 +63,18 @@ public class SeekerItems {
 
     }
 
+    public static ItemStack Bed() {
+
+        ItemStack bed = new ItemStack(Material.RED_BED, 1);
+        ItemMeta meta = bed.getItemMeta();
+        List<String> lore = new ArrayList<>();
+
+        lore.add(ChatColor.BLUE + "Marks you as the seeker");
+        meta.setLore(lore);
+        meta.setDisplayName(ChatColor.AQUA + "Seeker Bed!");
+
+        bed.setItemMeta(meta);
+
+        return bed;
+    }
 }

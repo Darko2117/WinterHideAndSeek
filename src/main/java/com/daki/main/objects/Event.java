@@ -1,5 +1,7 @@
 package com.daki.main.objects;
 
+import com.daki.main.Release;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,9 @@ public class Event {
 
     Boolean running;
     List<Participant> participants;
+    Release release = null;
+    EventTimer timer = null;
+    long duration = 3600;
 
     public Event() {
 
@@ -33,6 +38,18 @@ public class Event {
     }
 
     public void addParticipant(Participant participant) {
+        participant.getPlayer().getInventory().clear();
+        List<Participant> jf = new ArrayList<>();
+        for (Participant participant1 : participants){
+            if (participant1.getPlayer() == participant.getPlayer()){
+                jf.add(participant1);
+            }
+        }
+
+        for (Participant p : jf){
+            participants.remove(p);
+        }
+
         this.participants.add(participant);
     }
 
@@ -53,4 +70,23 @@ public class Event {
         participants.clear();
     }
 
+    public void createRelease(){
+        release = new Release();
+    }
+
+    public Release getRelease(){
+        return release;
+    }
+
+    public EventTimer getTimer(){
+        return timer;
+    }
+
+    public void createTimer(){
+        timer = new EventTimer(duration);
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
 }
